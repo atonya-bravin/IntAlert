@@ -5,6 +5,7 @@
 
 ## Description
 This is a project that tries to clean the internet by providing a plartform for the internet users to lauch complains on insigtful content on the internet. The team hopes that the application will help create a more sane internet community.
+  
 More of the document and what it is about can be found in the following MVP specification document.[MVP Specification](https://docs.google.com/document/d/160kL2PhBtR04XI3Ld43sVryWOufKo7ap92WccFlLJVo/edit)
 
 ## Technologies Used
