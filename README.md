@@ -27,6 +27,7 @@ This is a link to the trello board that contains the project plan [Trello](https
 
 ## IntAlert Team
 - **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer
+  
 [<i class="fas fa-github"></i>](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
 - **Myra Jarenga** : Frontend Developer | QA Engineer
 [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
