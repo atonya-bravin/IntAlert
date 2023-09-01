@@ -16,7 +16,7 @@ This is a project that tries to clean the internet by providing a plartform for 
 This is a link that contains an image of our database design [Database](https://drive.google.com/file/d/1hYGBjemjRO702wySGdFp0vFcdtDDt_NP/view?usp=sharing)
 
 ## Project Plan
-This is a link to the trello board that contains the project plan [Trello](https://trello.com/b/bEMg1S6S/tikkenya)
+This is a link to the trello board that contains the project plan [Trello](https://trello.com/b/bEMg1S6S/intalert)
 
 ## IntAlert Team
 - **Bravin Atonya** : [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
