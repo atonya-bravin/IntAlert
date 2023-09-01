@@ -20,8 +20,11 @@ This is a link to the trello board that contains the project plan [Trello](https
 
 ## IntAlert Team
 - **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer
-                  [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
+  
+                [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
 - **Myra Jarenga** : Frontend Developer | QA Engineer
-                  [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
+  
+                [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
 - **Laban Kibet** : Backend Developer | QA Engineer
-                  [Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
+  
+                [Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
