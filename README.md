@@ -19,6 +19,9 @@ This is a link that contains an image of our database design [Database](https://
 This is a link to the trello board that contains the project plan [Trello](https://trello.com/b/bEMg1S6S/intalert)
 
 ## IntAlert Team
-- **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer => [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
-- **Myra Jarenga** : Frontend Developer | QA Engineer => [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
-- **Laban Kibet** : Backend Developer | QA Engineer => [Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
+- **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer
+                [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
+- **Myra Jarenga** : Frontend Developer | QA Engineer
+                [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
+- **Laban Kibet** : Backend Developer | QA Engineer
+                [Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
