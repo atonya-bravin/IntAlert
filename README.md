@@ -1,3 +1,10 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+vg5Knujsl5P+Qb5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5"
+  crossorigin="anonymous"
+/>
+
 # IntAlert
 ![Repo size](https://img.shields.io/github/repo-size/atonya-bravin/IntAlert )
 ![Repo License](https://img.shields.io/github/license/atonya-bravin/IntAlert.svg)
@@ -19,6 +26,9 @@ This is a link that contains an image of our database design [Database](https://
 This is a link to the trello board that contains the project plan [Trello](https://trello.com/b/bEMg1S6S/intalert)
 
 ## IntAlert Team
-- **Bravin Atonya** : [Github](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
-- **Myra Jarenga** : [Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
-- **Laban Kibet** : [Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
+- **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer
+[<i class="fas fa-github"></i>](https://github.com/atonya-bravin), [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/), [Twitter](https://twitter.com/bravin_the_Geek)
+- **Myra Jarenga** : Frontend Developer | QA Engineer
+[Github](https://github.com/myrajarenga), [LinkedIn](https://www.linkedin.com/in/myra-jarenga/), [Twitter](https://twitter.com/JarengaMyra)
+- **Laban Kibet** : Backend Developer | QA Engineer
+[Github](https://github.com/Laban254), [LinkedIn](https://www.linkedin.com/in/laban-rotich/), [Twitter](https://twitter.com/labanK_)
