@@ -8,7 +8,9 @@ This is a project that tries to clean the internet by providing a plartform for 
   
 More of the application and what it is about can be found in the following MVP specification document.[MVP Specification](https://docs.google.com/document/d/160kL2PhBtR04XI3Ld43sVryWOufKo7ap92WccFlLJVo/edit)
 
-To check out the application presentation video, [click here](https://drive.google.com/file/d/11Uc1C9pvNzIdjXH8DDTi_U_jD5gLNuNL/view?usp=sharing) 
+To check out the application presentation video, [click here](https://drive.google.com/file/d/11Uc1C9pvNzIdjXH8DDTi_U_jD5gLNuNL/view?usp=sharing)
+
+The following is a link to the sliders that provide insights to the aplication development and objective[Slider Document](https://docs.google.com/presentation/d/1s1gb8bD5GXUTYS66aFaSiEz6vhKL8h0yf5P8WhNwJpk/edit?usp=sharing)
 
 
 ## Technologies Used
