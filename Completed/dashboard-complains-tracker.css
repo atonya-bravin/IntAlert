@@ -1,0 +1,90 @@
+body{
+    background-color: white;
+}
+.container{
+    display: flex;
+}
+.options-container{
+    width: 25%;
+    background-color: #4C979D;
+    color: white;
+    font-family: 'poppins-light';
+    font-size: 14px;
+    line-height: 35px;
+}
+#user-name{
+    margin-left: 2.5em;
+    font-family: 'poppins-medium';
+    font-size: 16px;
+}
+.logo-container{
+    font-family: 'poppins-bold';
+    font-size: 32px;
+    margin-left: 1em;
+    margin-bottom: .25em;
+    margin-top: .75em;
+}
+.dashboard-options{
+    margin-left: 3.75em;
+    list-style: none;
+}
+.active-link{
+    font-family: 'poppins-medium';
+}
+.log-out-container{
+    margin-left: 3.75em;
+    margin-top: .75em;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.log-out-indicator{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+.logout-link{
+    line-height: 0px;
+    margin-left: 5px;
+}
+button{
+    border: none;
+    font-family: 'poppins-bold';
+    margin-top: 2em;
+    width: 230px;
+    height: 45px;
+    border-radius: 5px;
+    background-color: #FF5E51;
+    color:white;
+}
+.Complains-tracker{
+    width: 75%;
+}
+.table-container{
+    width: 100%;
+    text-align: center;
+}
+table{
+    margin-top: 1.5em;
+}
+table th{
+    font-family: 'poppins-medium';
+    font-size: 14px;
+    padding-right: 34px;
+    padding-left: 50px;
+}
+td{
+    padding-right: 24px;
+    padding-left: 50px;
+    text-align: center;
+    padding-top: .5em;
+    font-family: 'poppins-light';
+    font-size: 14px;
+}
+.Complains-tracker h1{
+    text-align: center;
+    font-family: 'poppins-bold';
+    margin-top: .5em;
+}
+
