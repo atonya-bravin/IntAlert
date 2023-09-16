@@ -35,6 +35,7 @@ app.get('/sign-up', (req, res)=>{
 });
 
 app.post('/sign-up', (req, res)=>{
+    if (req.body.password === req.body.confirmPassword) {
     userModel.create(req.body)
     .then((user)=>{
             res.status(200).send("User created successfully "  + user)
@@ -42,6 +43,9 @@ app.post('/sign-up', (req, res)=>{
         .catch((error)=>{ 
             res.status(500).send("Error creating user " + error)
         });
+    } else {
+        res.status(400).send("Passwords do not match");
+    }
 
 })
 
@@ -49,9 +53,43 @@ app.get('/sign-in', (req, res)=>{
     res.sendFile(path.resolve(__dirname, 'Views/sign-in.html'));
 });
 
+app.post("/sign-in", (req, res)=> {
+    userModel.findOne({ email: req.body.email })
+    .then((user)=>{
+        if (user.password === req.body.password) {
+            res.status(200).sendFile(path.resolve(__dirname, 'Views/home_page.html'));
+        } else { 
+            res.status(400).send("Invalid password");
+        }
+    }).catch((err) => {
+        res.status(400).send("Email does not exist" );
+    });
+    
+    
+})
+
 app.get('/change-password', (req, res)=>{
     res.sendFile(path.resolve(__dirname, "Views/forgot_password.html"));
 });
+
+app.post('/change-password', (req, res)=>{
+    if (req.body.password === req.body.confirmPassword) {
+    userModel.findOneAndUpdate({email: req.body.email}, {password: req.body.password})
+    .then((user)=>{
+            res.status(200).send("User information updated successfully "  + user)
+        })
+        .catch((error)=>{ 
+            res.status(500).send("Error updating  user " + error)
+        });
+    } else {
+        res.status(400).send("Passwords do not match");
+    }
+
+})
+
+app.get('/complains-bay', (req, res) =>{
+    res.sendFile(path.resolve(__dirname, "Views/dashboard-complain-bay.html"));
+})
 
 app.listen(3000, ()=>{
     console.log("Welcome to IntAlert server listening to port 3000");
