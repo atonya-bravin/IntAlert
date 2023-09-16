@@ -72,5 +72,8 @@
     font-family: 'poppins-bold';
     font-size: 20px;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
 
