@@ -13,7 +13,8 @@ const userSchema = new schema({
         type: String,
         required: true
     }
-})
+},)
+userSchema.set('timestamps', true);
 const user = mongoose.model('User', userSchema);
 
 module.exports = user;
