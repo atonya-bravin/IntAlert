@@ -1,15 +1,26 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema;
-const {v4, uuidv4} = require('uuidv4');
 
 const userSchema = new schema({
     
-    email: {
+    user_id: {
         type: String,
         required: true
     },
-    password: {
+    link: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: Text,
+        required: true
+    },
+    violationType: {
+        type: String,
+        required: true
+    },
+    status: {
         type: String,
         required: true
     }
