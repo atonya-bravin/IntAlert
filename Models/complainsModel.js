@@ -22,7 +22,8 @@ const userSchema = new schema({
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        default: 'pending'
     }
 },)
 userSchema.set('timestamps', true);
