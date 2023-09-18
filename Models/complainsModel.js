@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema;
 
-const userSchema = new schema({
-    
+const complainsSchema = new schema({
     user_id: {
         type: String,
-        required: true
+        required: true,
+        default: "650808b9e9e592216d5c2849"
     },
     link: {
         type: String,
         required: true
     },
     description: {
-        type: Text,
+        type: String,
         required: true
     },
     violationType: {
@@ -26,7 +26,7 @@ const userSchema = new schema({
         default: 'pending'
     }
 },)
-userSchema.set('timestamps', true);
-const user = mongoose.model('User', userSchema);
+complainsSchema.set('timestamps', true);
+const complain = mongoose.model('Complain', complainsSchema);
 
-module.exports = user;
+module.exports = complain;
