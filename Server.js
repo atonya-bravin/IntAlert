@@ -6,10 +6,17 @@ const complainsModel = require("./Models/complainsModel");
 const bodyparser = require("body-parser");
 const MONGO_BD_URL = "mongodb+srv://kibe:Laban6544@cluster2hng.nymctiq.mongodb.net/?retryWrites=true&w=majority"
 const app = express();
-app.use(express.static('public'));
+const expressSession = require('express-session');
+const ejs = require('ejs');
 
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extended: true}))
+app.set('view engine','ejs');
+
+app.use(express.static('public'));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(expressSession({
+    secret: 'IntAlert Application secret pass'
+}));
 
 const connectDatabase  = async () =>{
     await mongoose.connect(MONGO_BD_URL)
@@ -20,7 +27,6 @@ const connectDatabase  = async () =>{
     db.once('open', () => {
         return ("Connected to the database")
     })
-
 }
 
 connectDatabase()
@@ -57,6 +63,7 @@ app.post("/sign-in", (req, res)=> {
     userModel.findOne({ email: req.body.email })
     .then((user)=>{
         if (user.password === req.body.password) {
+            req.session.user_id = user._id.toString();
             res.status(200).sendFile(path.resolve(__dirname, 'Views/home_page.html'));
         } else { 
             res.status(400).send("Invalid password");
@@ -100,6 +107,19 @@ app.post('/complains-bay', (req, res) =>{
         res.status(400).send("Kindly enter the violation type");
     }
     complainsModel.create(req.body);
+});
+
+app.get("/complains-tracker", (req, res) => {
+    const session_user_id = req.session.user_id;
+    console.log(session_user_id);
+    complainsModel.find({user_id: session_user_id})
+    .then((userComplains)=>{
+        console.log(userComplains);
+        res.render("dashboard-complains-tracker",{
+            userComplains: userComplains
+        });
+    });
+    
 });
 
 app.listen(3000, ()=>{
