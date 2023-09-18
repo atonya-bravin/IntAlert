@@ -72,14 +72,18 @@ table{
 table th{
     font-family: 'poppins-medium';
     font-size: 14px;
-    padding-right: 34px;
-    padding-left: 50px;
+    border-right-width: 2em;
+    border-left-width: 2em;
+    border-style: solid;
+    border-color: white;
+    text-wrap: nowrap;
 }
 td{
     text-align: center;
     padding-top: .5em;
     font-family: 'poppins-light';
     font-size: 14px;
+    text-wrap: nowrap;
 }
 td a{
     color: black;
