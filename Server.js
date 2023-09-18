@@ -117,7 +117,14 @@ app.get("/complains-tracker", (req, res) => {
             userComplains: userComplains
         });
     });
-    
+});
+
+app.get("/complains-viewer", (req, res) => {
+    complainsModel.find({}).then((complains)=>{
+        res.render("complains-viewer",{
+            complains: complains
+        });
+    });
 });
 
 app.listen(3000, ()=>{
