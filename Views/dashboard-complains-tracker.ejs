@@ -36,8 +36,8 @@
                     <th>Complain Type</th>
                     <th>Posting Date</th>
                     <th>Status</th>
-                    <tr>
-                        <% for(i = 0; i<userComplains.length; i++) { %>
+                    <% for(i = 0; i<userComplains.length; i++) { %>
+                        <tr>
                             <td><a href=<%= userComplains[i].link %>> <%= userComplains[i].link %> </a></td>
                             <td> <%= userComplains[i].violationType %> </td>
                             <td> <%= userComplains[i].createdAt.toLocaleDateString() %> </td>
@@ -49,8 +49,8 @@
                                     <td><i class="fa-solid fa-eye"></i></td>
                                     <td><i class="fa-solid fa-rotate-right"></i></td>
                                 <% } %>
-                            <% } %>
-                    </tr>
+                        </tr>
+                    <% } %>
                 </table>
                 <button type="button">Raise Complain</button>
             </div>
