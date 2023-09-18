@@ -31,24 +31,24 @@
             <h1>Complains Bay</h1>
             <div class="input-container-holder">
                 <div class="input-container">
-                    <label for="video_link">Video Link</label>
-                    <br/>
-                    <input type="text" name="video-link" id="video_link" placeholder="https://example.com">
-                    <br/>
-                    <button type="button" id="confirm_button">Confirm Link</button>
-                    <form action="" method="post">
+                    <form action="/complains-bay" method="post">
+                        <label for="video_link">Video Link</label>
+                        <br/>
+                        <input type="text" name="link" id="video_link" placeholder="https://example.com">
+                        <br/>
+                        <button type="button" id="confirm_button">Confirm Link</button>
                         <label for="violation_type">Violation Type</label>
                         <br/>
-                        <select name="violation-type" id="violation_type">
+                        <select name="violationType" id="violation_type">
                             <option value="Choose type">Choose Violation Type</option>
                             <option value="Misinformation">Misinformation</option>
                             <option value="Hate Speech">Hate Speech</option>
                             <option value="Explicit Content">Explicit Content</option>
                         </select>
                         <br/>
-                        <label for="Violation_description">Description</label>
+                        <label for="violation_description">Description</label>
                         <br/>
-                        <textarea id="Violation_description"></textarea>
+                        <textarea name="description" id="Violation_description"></textarea>
                         <div class="confirm-button_container">
                             <button type="submit" class="submit-button">Push Complain</button>
                         </div>
