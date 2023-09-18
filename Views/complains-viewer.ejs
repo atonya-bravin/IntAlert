@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntAlert Complains Viewer</title>
+    <link rel="stylesheet" href="CSS/universal.css">
+    <link rel="stylesheet" href="CSS/complains-viewer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-container">
+            <div class="logo-container">
+                <span id="logo">IntAlert</span>
+            </div>
+            <div class="user-options">
+                <div user-container>
+                    <i class="fa-solid fa-user" style="color: #ffffff;"></i> &nbsp;  Bravin Atonya
+                </div>
+                <div class="log-out-container">
+                    <div class="logout-indivator"></div>
+                    <div>Logout</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="heading-container">
+                <h1>Complains Viewer</h1>
+            </div>
+            <div class="table-container">
+                <table>
+                    <th>Complain Link</th>
+                    <th>Complain Type</th>
+                    <th>Posting Date</th>
+                    <th>Violation Type</th>
+                    <% for(i = 0; i<complains.length; i++) { %>
+                        <tr>
+                            <td><a href=<%= complains[i].link %>> <%= complains[i].link %> </a></td>
+                            <td> <%= complains[i].violationType %> </td>
+                            <td> <%= complains[i].createdAt.toLocaleDateString() %> </td>
+                            <td>
+                                <select name="" id="">
+                                    <option value="Choose Violation Type">Violation type</option>
+                                    <option value="Valid">Valid</option>
+                                    <option value="false-alarm">False Alarm</option>
+                                    <option value="age-difference">Age Difference</option>
+                                </select>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+            <div class="pop-up-container">
+                <div class="pop-up">
+                    <div class="close-button_container">
+                        <button type="button" id="close-button"><i class="fa-regular fa-circle-xmark" style="color: #ffffff;"></i></button>
+                    </div>
+                    <H1 id="pop-up-heading">
+                        Confirm Violation type
+                    </H1>
+                    <p id="pop-up-question">Are you sure of it is a valid Violation?</p>
+                    <div class="buttons-container">
+                        <button type="button" id="yes-button">Yes</button>
+                        <button type="button" id="no-button">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
