@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema;
-const {v4, uuidv4} = require('uuidv4');
 
 const userSchema = new schema({
     
