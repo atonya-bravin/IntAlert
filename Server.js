@@ -111,10 +111,8 @@ app.post('/complains-bay', (req, res) =>{
 
 app.get("/complains-tracker", (req, res) => {
     const session_user_id = req.session.user_id;
-    console.log(session_user_id);
     complainsModel.find({user_id: session_user_id})
     .then((userComplains)=>{
-        console.log(userComplains);
         res.render("dashboard-complains-tracker",{
             userComplains: userComplains
         });
