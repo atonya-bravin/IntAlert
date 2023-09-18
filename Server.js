@@ -4,7 +4,6 @@ const path = require("path");
 const userModel = require("./Models/usersModel");
 const complainsModel = require("./Models/complainsModel");
 const bodyparser = require("body-parser");
-const { error } = require("console");
 const MONGO_BD_URL = "mongodb+srv://kibe:Laban6544@cluster2hng.nymctiq.mongodb.net/?retryWrites=true&w=majority"
 const app = express();
 app.use(express.static('public'));
@@ -91,6 +90,15 @@ app.get('/complains-bay', (req, res) =>{
 });
 
 app.post('/complains-bay', (req, res) =>{
+    if (!req.body.link){
+        res.status(400).send("Kindly enter the link");
+    }
+    else if(!req.body.description){
+        res.status(400).send("Kindly enter the description");
+    }
+    else if(!req.body.violationType){
+        res.status(400).send("Kindly enter the violation type");
+    }
     complainsModel.create(req.body);
 });
 
