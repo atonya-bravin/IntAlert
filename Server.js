@@ -127,6 +127,9 @@ app.get("/complains-viewer", (req, res) => {
     });
 });
 
+app.get("/tutorial", (req, res)=>{
+    res.sendFile(path.resolve(__dirname, "Views/dashboard-tutorials.html"))
+});
 app.listen(3000, ()=>{
     console.log("Welcome to IntAlert server listening to port 3000");
 })
