@@ -8,6 +8,7 @@ const MONGO_BD_URL = "mongodb+srv://kibe:Laban6544@cluster2hng.nymctiq.mongodb.n
 const app = express();
 const expressSession = require('express-session');
 const ejs = require('ejs');
+const nodemailer = require('nodemailer');
 
 app.set('view engine','ejs');
 
@@ -127,8 +128,46 @@ app.get("/complains-viewer", (req, res) => {
     });
 });
 
+app.get("/invitation", (req, res)=>{
+    res.sendFile(path.resolve(__dirname, "Views/dashboard-invitations.html"));
+});
+
 app.get("/tutorial", (req, res)=>{
     res.sendFile(path.resolve(__dirname, "Views/dashboard-tutorials.html"))
+});
+
+app.post("/send-email", (req, res)=>{
+    console.log("sending mail");
+    // Create a transporter object
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'intalert.mailer@gmail.com',
+            pass: 'hgkp bffp uwen qklw'
+        }
+    });
+    
+    const { recipient_mail, mail_body } = req.body;
+
+    const intAlert_link_message = '<br/><br><b>IntAlert Link<b/><br/><br/><a href="/">localhost:3000</a>';
+    const full_mail_body = mail_body + intAlert_link_message;
+
+    // Email data
+    const mailOptions = {
+        from: 'intalert.mailer@gmail.com',
+        to: recipient_mail,
+        subject: 'Invitation to IntAlert',
+        html: full_mail_body
+    };
+
+     // Send the email
+     transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error:', error);
+        } else {
+            console.log('Email sent:', info.response);
+        }
+    });
 });
 app.listen(3000, ()=>{
     console.log("Welcome to IntAlert server listening to port 3000");
