@@ -24,49 +24,54 @@
                 </div>
             </div>
         </div>
-        <div class="content-container">
-            <div class="heading-container">
-                <h1>Complains Viewer</h1>
-            </div>
-            <div class="table-container">
-                <table>
-                    <th>Complain Link</th>
-                    <th>Complain Type</th>
-                    <th>Posting Date</th>
-                    <th>Violation Type</th>
-                    <% for(i = 0; i<complains.length; i++) { %>
-                        <tr>
-                            <td><a href=<%= complains[i].link %>> <%= complains[i].link %> </a></td>
-                            <td> <%= complains[i].violationType %> </td>
-                            <td> <%= complains[i].createdAt.toLocaleDateString() %> </td>
-                            <td>
-                                <select name="" id="">
-                                    <option value="Choose Violation Type">Violation type</option>
-                                    <option value="Valid">Valid</option>
-                                    <option value="false-alarm">False Alarm</option>
-                                    <option value="age-difference">Age Difference</option>
-                                </select>
-                            </td>
-                        </tr>
-                    <% } %>
-                </table>
-            </div>
-            <div class="pop-up-container">
-                <div class="pop-up">
-                    <div class="close-button_container">
-                        <button type="button" id="close-button"><i class="fa-regular fa-circle-xmark" style="color: #ffffff;"></i></button>
-                    </div>
-                    <H1 id="pop-up-heading">
-                        Confirm Violation type
-                    </H1>
-                    <p id="pop-up-question">Are you sure of it is a valid Violation?</p>
-                    <div class="buttons-container">
-                        <button type="button" id="yes-button">Yes</button>
-                        <button type="button" id="no-button">No</button>
+        <form action="/complains-viewer" method="post" id="viewer-form">
+            <div class="content-container">
+                <div class="heading-container">
+                    <h1>Complains Viewer</h1>
+                </div>
+                <div class="table-container">
+                    
+                    <table>
+                        <th>Complain Link</th>
+                        <th>Complain Type</th>
+                        <th>Posting Date</th>
+                        <th>Violation Type</th>
+                        <% for(i = 0; i<complains.length; i++) { %>
+                            <tr>
+                                <td><a href="<%= complains[i].link %>"><input type="text" name="complain_link" id="complain_link" value="<%= complains[i].link %>"></a></td>
+                                <td class="hide"><input type="text" name="complain_id" id="complain_id" value="<%= complains[i]._id %>"></td>
+                                <td><input type="text" name="violation_type" id="violation_type" value="<%= complains[i].violationType %>"></td>
+                                <td> <%= complains[i].createdAt.toLocaleDateString() %> </td>
+                                <td>
+                                    <select name="moderator_conclusion" class="violation_type" id="moderator_conclusion">
+                                        <option value="Choose Violation Type">Violation type</option>
+                                        <option value="Valid">Valid</option>
+                                        <option value="false-alarm">False Alarm</option>
+                                        <option value="age-difference">Age Difference</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
+                <div class="pop-up-container hide" id="popup_container">
+                    <div class="pop-up">
+                        <div class="close-button_container">
+                            <button type="button" id="close-button"><i class="fa-regular fa-circle-xmark" style="color: #ffffff;"></i></button>
+                        </div>
+                        <H1 id="pop-up-heading">
+                            Confirm Violation type
+                        </H1>
+                        <p id="pop-up-question"></p>
+                        <div class="buttons-container">
+                            <button type="submit" id="yes-button">Yes</button>
+                            <button type="button" id="no-button">No</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+    <script src="scripts/complains-viewer-popup_manip.js"></script>
 </body>
 </html>
