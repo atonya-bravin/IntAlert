@@ -5,8 +5,7 @@ const schema = mongoose.Schema;
 const complainsSchema = new schema({
     user_id: {
         type: String,
-        required: true,
-        default: "650808b9e9e592216d5c2849"
+        required: true
     },
     link: {
         type: String,
@@ -21,6 +20,11 @@ const complainsSchema = new schema({
         required: true
     },
     status: {
+        type: String,
+        required: true,
+        default: 'pending'
+    },
+    outcome: {
         type: String,
         required: true,
         default: 'pending'
