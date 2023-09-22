@@ -67,15 +67,33 @@ table th{
     border-right-style:solid;
     border-color: #4C979D;
 }
-td{
+td a input, td{
     text-align: center;
     font-family: 'poppins-light';
     font-size: 14px;
     text-wrap: nowrap;
 }
-td a{
+td a input{
     color: white;
     text-decoration: none;
+    border:none;
+    background-color: #4C979D;
+}
+td input{
+    color: white;
+    text-decoration: none;
+    border:none;
+    background-color: #4C979D;
+    pointer-events: none;
+    font-family: 'poppins-light';
+    font-size: 14px;
+    text-align: center;
+}
+.deactivate{
+    pointer-events: none;
+}
+td a input:active{
+    border:none;
 }
 select{
     margin-bottom: 20px;
@@ -93,6 +111,10 @@ select{
     height: 75%;
     width: 100%;
 }
+form{
+    width: 100%;
+    height: 100%;
+}
 .pop-up-container{
     position: absolute;
     left: 50%;
@@ -104,7 +126,12 @@ select{
     background-color: rgba(1, 179, 149, 0.904);
     border: none;
     border-radius: 8px;
+}
+.hide{    
     display: none;
+}
+.show{
+    display: block;
 }
 #pop-up-heading{
     margin-top: 1em;
