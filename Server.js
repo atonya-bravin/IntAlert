@@ -9,6 +9,7 @@ const app = express();
 const expressSession = require('express-session');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
+app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine','ejs');
 
@@ -44,11 +45,11 @@ app.get('/sign-up', (req, res)=>{
 app.post('/sign-up', (req, res)=>{
     if (req.body.password === req.body.confirmPassword) {
     userModel.create(req.body)
-    .then((user)=>{
-            res.status(200).send("User created successfully "  + user)
+    .then(()=>{
+            res.redirect("/Complains-bay")
         })
         .catch((error)=>{ 
-            res.status(500).send("Error creating user " + error)
+            res.redirect("/error-500");
         });
     } else {
         res.status(400).send("Passwords do not match");
@@ -65,7 +66,7 @@ app.post("/sign-in", (req, res)=> {
     .then((user)=>{
         if (user.password === req.body.password) {
             req.session.user_id = user._id.toString();
-            res.status(200).sendFile(path.resolve(__dirname, 'Views/home_page.html'));
+            res.redirect("/complains-bay");
         } else { 
             res.status(400).send("Invalid password");
         }
@@ -94,7 +95,12 @@ app.post('/change-password', (req, res)=>{
 })
 
 app.get('/complains-bay', (req, res) =>{
-    res.sendFile(path.resolve(__dirname, "Views/dashboard-complain-bay.html"));
+    if(req.session.user_id === undefined){
+        res.redirect("/sign-in");
+    }
+    else{
+        res.sendFile(path.resolve(__dirname, "Views/dashboard-complain-bay.html"));
+    }
 });
 
 app.post('/complains-bay', (req, res) =>{
@@ -107,25 +113,58 @@ app.post('/complains-bay', (req, res) =>{
     else if(!req.body.violationType){
         res.status(400).send("Kindly enter the violation type");
     }
+    req.body['user_id'] = req.session.user_id;
     complainsModel.create(req.body);
+    res.redirect("/complains-tracker");
 });
 
 app.get("/complains-tracker", (req, res) => {
-    const session_user_id = req.session.user_id;
-    complainsModel.find({user_id: session_user_id})
-    .then((userComplains)=>{
-        res.render("dashboard-complains-tracker",{
-            userComplains: userComplains
+    if(req.session.user_id === undefined){
+        res.redirect("/sign-in");
+    }
+    else{
+        const session_user_id = req.session.user_id;
+        complainsModel.find({user_id: session_user_id})
+        .then((userComplains)=>{
+            res.render("dashboard-complains-tracker",{
+                userComplains: userComplains
+            });
         });
-    });
+    }
 });
 
 app.get("/complains-viewer", (req, res) => {
-    complainsModel.find({}).then((complains)=>{
+    complainsModel.find({'status': 'pending'}).then((complains)=>{
         res.render("complains-viewer",{
             complains: complains
         });
     });
+});
+
+app.post("/complains-viewer", (req, res) => {
+    const complain_ids = req.body.complain_id;
+    const moderator_conclusions = req.body.moderator_conclusion;
+    console.log(moderator_conclusions);
+    if (Array.isArray(complain_ids)){
+        for (let complain_counter = 0; complain_counter < complain_ids.length; complain_counter++) {
+            if (moderator_conclusions[complain_counter] == "Choose Violation Type"){
+                continue;
+            }
+            console.log(complain_ids[complain_counter]);
+            complainsModel.findByIdAndUpdate(complain_ids[complain_counter], {outcome: moderator_conclusions[complain_counter], status: "Completed"}).then(()=>{
+                res.redirect("/complains-viewer");
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
+    }
+    else {
+        complainsModel.findByIdAndUpdate(complain_ids, {outcome: moderator_conclusions, status: "Completed"}).then(()=>{
+            res.redirect("/complains-viewer");
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 });
 
 app.get("/invitation", (req, res)=>{
@@ -169,6 +208,25 @@ app.post("/send-email", (req, res)=>{
         }
     });
 });
+
+app.get("/error-500",(req, res) => {
+    res.sendFile(path.resolve(__dirname,"Views/Error_response_pages/500_error.html"));
+});
+
+app.get("/error-404",(req, res) => {
+    res.sendFile(path.resolve(__dirname,"Views/Error_response_pages/404_error.html"));
+});
+
+app.get("/logout",(req, res)=>{
+    req.session.destroy();
+    res.redirect('/');
+});
+
+app.use((req, res, next) => {
+    res.redirect("/error-404");
+    next();
+});
+
 app.listen(3000, ()=>{
     console.log("Welcome to IntAlert server listening to port 3000");
 })
