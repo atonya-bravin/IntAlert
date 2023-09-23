@@ -1,0 +1,85 @@
+body{
+    background-color: white;
+}
+.container{
+    display: flex;
+}
+.welcome-text_section_container{
+    color: white;
+    background-image: url("./../images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;    
+    background-position: 39%, 50%;
+    height: 100%;
+    width: 50%;
+    background-clip: border-box;
+    position: relative;
+}
+.welcome-text_section{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+#join_us_heading{
+    margin-bottom: .75em;
+    font-family: 'poppins-bold';
+    text-align: center;
+}
+.welcome-text_section p{
+    font-family: 'poppins-light';
+    font-size: 14px;
+}
+.user-information-section_container{
+    height: 100%;
+    width: 50%;
+    position: relative;
+}
+.user-information-section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.logo-section{
+    width: 100%;
+    text-align: center;
+    font-family: 'poppins-bold';
+    font-size: 35px;
+    margin-bottom: .5em;
+}
+form input{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 350px;
+    height: 36px;
+    padding-left: 5px;
+    border-radius: 5px;
+    font-family: 'poppins-light';
+}
+form label{
+    font-family: 'poppins-medium';
+    font-size: 15px;
+}
+.submission_button_container{
+    width: 100%;
+    position: relative;
+}
+.submission_button_container button{
+    width: 65%;
+    height: 45px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    border: none;
+    top: 1em;
+    background-color: #FF5E51;
+    color: white;
+    font-family: 'poppins-bold';
+    padding: 5px;
+}
