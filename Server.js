@@ -20,6 +20,18 @@ app.use(expressSession({
     secret: 'IntAlert Application secret pass'
 }));
 
+
+
+// Create a mail transporter object
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'intalert.mailer@gmail.com',
+        pass: 'hgkp bffp uwen qklw'
+    }
+});
+
+
 const connectDatabase  = async () =>{
     await mongoose.connect(MONGO_BD_URL)
     const db = mongoose.connection;
@@ -75,24 +87,87 @@ app.post("/sign-in", (req, res)=> {
     });
 });
 
-app.get('/change-password', (req, res)=>{
+app.get('/forget-password', (req, res)=>{
     res.sendFile(path.resolve(__dirname, "Views/forgot_password.html"));
 });
+app.get('/change-password', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, "Views/dashboard-change-password.html"));
+})
 
 app.post('/change-password', (req, res)=>{
-    if (req.body.password === req.body.confirmPassword) {
-    userModel.findOneAndUpdate({email: req.body.email}, {password: req.body.password})
-    .then((user)=>{
-            res.status(200).send("User information updated successfully "  + user)
-        })
-        .catch((error)=>{ 
-            res.status(500).send("Error updating  user " + error)
+    if (req.session.user_id != undefined){
+        console.log("i am in");
+;        const user_id = req.session.user_id;
+        userModel.findOne({_id: user_id}).then((user)=>{
+            const password = req.body.old_password;
+            console.log(password);
+            console.log(user.password);
+            if (password == user.password && req.body.new_password == req.body.confirm_password){
+                console.log("passwords are okay");
+                userModel.findOneAndUpdate({_id: user_id}, {password: req.body.new_password})
+                .then(()=>{
+                    req.session.destroy();
+                    res.redirect("/sign-in");
+                })
+                .catch((error)=>{ 
+                    res.status(500).send("Error updating  user " + error)
+                });
+            } 
+            else {
+                res.status(400).send("Passwords do not match");
+            }
         });
-    } else {
-        res.status(400).send("Passwords do not match");
     }
+    else{
+        if (req.body.password === req.body.confirmPassword && req.session.passcode == req.body.passcode) {
+            userModel.findOneAndUpdate({email: req.body.email}, {password: req.body.password})
+            .then(()=>{
+                    req.session.destroy();
+                    res.redirect("/sign-in");
+                })
+                .catch((error)=>{ 
+                    res.status(500).send("Error updating  user " + error)
+                });
+            } else {
+                res.status(400).send("Passwords do not match");
+        }
+    }
+});
 
-})
+app.post('/send-passcode',(req, res) => {
+
+    const recipient_mail = req.body.email;
+    console.log(recipient_mail);
+    const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let passcode = "";
+
+    length = 8;
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        passcode += charset.charAt(randomIndex);
+    }
+    req.session.passcode = passcode;
+    const intAlert_link_message = `<br/><br><b>IntAlert Link<b/><br/><br/>${passcode}`;
+    const full_mail_body = intAlert_link_message;
+    // Email data
+    const mailOptions = {
+        from: 'intalert.mailer@gmail.com',
+        to: recipient_mail,
+        subject: 'Invitation to IntAlert',
+        html: full_mail_body
+    };
+
+     // Send the email
+     transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error:', error);
+        } else {
+            console.log('Email sent:', info.response);
+        }
+    });
+    res.redirect("/forget-password");
+
+});
 
 app.get('/complains-bay', (req, res) =>{
     if(req.session.user_id === undefined){
@@ -177,15 +252,7 @@ app.get("/tutorial", (req, res)=>{
 
 app.post("/send-email", (req, res)=>{
     console.log("sending mail");
-    // Create a transporter object
-    const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'intalert.mailer@gmail.com',
-            pass: 'hgkp bffp uwen qklw'
-        }
-    });
-    
+           
     const { recipient_mail, mail_body } = req.body;
 
     const intAlert_link_message = '<br/><br><b>IntAlert Link<b/><br/><br/><a href="/">localhost:3000</a>';
