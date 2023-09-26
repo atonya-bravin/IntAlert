@@ -9,6 +9,7 @@ const app = express();
 const expressSession = require('express-session');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine','ejs');
@@ -43,10 +44,18 @@ const connectDatabase  = async () =>{
     })
 }
 
-connectDatabase()
+connectDatabase();
+
+
 
 app.get('/', (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'Views/home_page.html'));
+    if (req.session.user_id == undefined){
+        res.sendFile(path.resolve(__dirname,'Views/home_page.html'));
+    }
+    else{
+        res.redirect("/complains-bay");
+    }
+    
 });
 
 app.get('/sign-up', (req, res)=>{
@@ -55,19 +64,34 @@ app.get('/sign-up', (req, res)=>{
 });
 
 app.post('/sign-up', (req, res)=>{
-    if (req.body.password === req.body.confirmPassword) {
-    userModel.create(req.body)
-    .then(()=>{
-            res.redirect("/Complains-bay")
-        })
-        .catch((error)=>{ 
-            res.redirect("/error-500");
-        });
-    } else {
-        res.status(400).send("Passwords do not match");
-    }
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+    const email = req.body.email;
 
-})
+    userModel.findOne({email: email}).then((result)=>{
+        if(result){
+            res.status(400).send("Email already exists");
+        }
+    }).catch(()=>{
+        res.redirect("/error-500");
+    });
+        if (password.length >= 8 && password.length <= 16){
+            if (password === confirmPassword) {
+                userModel.create(req.body)
+                .then(()=>{
+                        res.redirect("/Complains-bay")
+                    })
+                .catch((error)=>{ 
+                    res.redirect("/error-500");
+                });
+            } else {
+                res.status(400).send("Passwords do not match");
+            }
+        }
+        else{
+            res.status(400).send("Password must be between 8 and 16 characters");
+        }
+    });
 
 app.get('/sign-in', (req, res)=>{
     res.sendFile(path.resolve(__dirname, 'Views/sign-in.html'));
@@ -76,12 +100,17 @@ app.get('/sign-in', (req, res)=>{
 app.post("/sign-in", (req, res)=> {
     userModel.findOne({ email: req.body.email })
     .then((user)=>{
-        if (user.password === req.body.password) {
-            req.session.user_id = user._id.toString();
-            res.redirect("/complains-bay");
-        } else { 
-            res.status(400).send("Invalid password");
-        }
+        bcrypt.compare(req.body.password, user.password).then((result)=>{
+            if(result == true){
+                req.session.user_id = user._id.toString();
+                res.redirect("/complains-bay");
+            }
+            else{
+                res.status(400).send("Invalid password");
+            }
+        }).catch((error)=>{
+            console.log(error);
+        });
     }).catch((err) => {
         res.status(400).send("Email does not exist" );
     });
@@ -96,22 +125,26 @@ app.get('/change-password', (req, res)=>{
 
 app.post('/change-password', (req, res)=>{
     if (req.session.user_id != undefined){
-        console.log("i am in");
-;        const user_id = req.session.user_id;
+        const user_id = req.session.user_id;
         userModel.findOne({_id: user_id}).then((user)=>{
             const password = req.body.old_password;
-            console.log(password);
-            console.log(user.password);
-            if (password == user.password && req.body.new_password == req.body.confirm_password){
-                console.log("passwords are okay");
-                userModel.findOneAndUpdate({_id: user_id}, {password: req.body.new_password})
-                .then(()=>{
-                    req.session.destroy();
-                    res.redirect("/sign-in");
+            if (req.body.new_password == req.body.confirm_password){
+                bcrypt.compare(password, user.password).then((result)=>{
+                    if (result){
+                        userModel.findOneAndUpdate({_id: user_id}, {password: req.body.new_password})
+                        .then(()=>{
+                            req.session.destroy();
+                            res.redirect("/sign-in");
+                        })
+                        .catch((error)=>{ 
+                            res.status(500).send("Error updating  user " + error)
+                        });
+                    }
+                    else{
+                        res.status(400).send("Invalid password");
+                    }
                 })
-                .catch((error)=>{ 
-                    res.status(500).send("Error updating  user " + error)
-                });
+                
             } 
             else {
                 res.status(400).send("Passwords do not match");
