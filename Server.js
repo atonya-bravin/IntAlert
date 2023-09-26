@@ -234,7 +234,7 @@ app.get("/complains-tracker", (req, res) => {
         const session_user_id = req.session.user_id;
         complainsModel.find({user_id: session_user_id})
         .then((userComplains)=>{
-            res.render("dashboard-complains-tracker",{
+            res.render("dashboard-complains-tracker.ejs",{
                 userComplains: userComplains
             });
         });
@@ -260,7 +260,7 @@ app.post("/complains-viewer", (req, res) => {
             }
             console.log(complain_ids[complain_counter]);
             complainsModel.findByIdAndUpdate(complain_ids[complain_counter], {outcome: moderator_conclusions[complain_counter], status: "Completed"}).then(()=>{
-                res.redirect("/complains-viewer");
+                res.redirect("/complains-viewer.ejs");
             }).catch(err=>{
                 console.log(err);
             });
