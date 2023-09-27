@@ -50,7 +50,7 @@ connectDatabase();
 
 app.get('/', (req, res)=>{
     if (req.session.user_id == undefined){
-        res.sendFile(path.resolve(__dirname,'HTML_views/home_page.html'));
+        res.sendFile(path.resolve(__dirname,'views/home_page.html'));
     }
     else{
         res.redirect("/complains-bay");
@@ -59,7 +59,7 @@ app.get('/', (req, res)=>{
 });
 
 app.get('/sign-up', (req, res)=>{
-    res.sendFile(path.resolve(__dirname,'HTML_views/Sign-up.html'));
+    res.sendFile(path.resolve(__dirname,'views/Sign-up.html'));
 
 });
 
@@ -94,7 +94,7 @@ app.post('/sign-up', (req, res)=>{
     });
 
 app.get('/sign-in', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, 'HTML_views/sign-in.html'));
+    res.sendFile(path.resolve(__dirname, 'views/sign-in.html'));
 });
 
 app.post("/sign-in", (req, res)=> {
@@ -117,10 +117,10 @@ app.post("/sign-in", (req, res)=> {
 });
 
 app.get('/forget-password', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "HTML_views/forgot_password.html"));
+    res.sendFile(path.resolve(__dirname, "views/forgot_password.html"));
 });
 app.get('/change-password', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "HTML_views/dashboard-change-password.html"));
+    res.sendFile(path.resolve(__dirname, "views/dashboard-change-password.html"));
 })
 
 app.post('/change-password', (req, res)=>{
@@ -207,7 +207,7 @@ app.get('/complains-bay', (req, res) =>{
         res.redirect("/sign-in");
     }
     else{
-        res.sendFile(path.resolve(__dirname, "HTML_views/dashboard-complain-bay.html"));
+        res.sendFile(path.resolve(__dirname, "views/dashboard-complain-bay.html"));
     }
 });
 
@@ -243,7 +243,7 @@ app.get("/complains-tracker", (req, res) => {
 
 app.get("/complains-viewer", (req, res) => {
     complainsModel.find({'status': 'pending'}).then((complains)=>{
-        res.render("complains-viewer",{
+        res.render("/complains-viewer",{
             complains: complains
         });
     });
@@ -276,11 +276,11 @@ app.post("/complains-viewer", (req, res) => {
 });
 
 app.get("/invitation", (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "HTML_views/dashboard-invitations.html"));
+    res.sendFile(path.resolve(__dirname, "views/dashboard-invitations.html"));
 });
 
 app.get("/tutorial", (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "HTML_views/dashboard-tutorials.html"))
+    res.sendFile(path.resolve(__dirname, "views/dashboard-tutorials.html"))
 });
 
 app.post("/send-email", (req, res)=>{
@@ -310,11 +310,11 @@ app.post("/send-email", (req, res)=>{
 });
 
 app.get("/error-500",(req, res) => {
-    res.sendFile(path.resolve(__dirname,"HTML_views/Error_response_pages/500_error.html"));
+    res.sendFile(path.resolve(__dirname,"views/Error_response_pages/500_error.html"));
 });
 
 app.get("/error-404",(req, res) => {
-    res.sendFile(path.resolve(__dirname,"HTML_views/Error_response_pages/404_error.html"));
+    res.sendFile(path.resolve(__dirname,"views/Error_response_pages/404_error.html"));
 });
 
 app.get("/logout",(req, res)=>{
