@@ -243,7 +243,7 @@ app.get("/complains-tracker", (req, res) => {
 
 app.get("/complains-viewer", (req, res) => {
     complainsModel.find({'status': 'pending'}).then((complains)=>{
-        res.render("/complains-viewer",{
+        res.render("complains-viewer",{
             complains: complains
         });
     });
