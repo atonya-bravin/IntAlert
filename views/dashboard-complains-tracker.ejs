@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntAlert Dashboard</title>
+    <link rel="stylesheet" href="CSS/universal.css">
+    <link rel="stylesheet" href="CSS/dashboard-complains-tracker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="options-container">
+            <div class="logo-container">
+                IntAlert
+            </div>
+            <span id="user-name">Bravin Atonya</span>
+            <br/>
+            <ul class="dashboard-options">
+                <a href="/complains-bay"><li class="dashboard-option">Raise Complain</li></a>
+                <a href="/complains-tracker"><li class="dashboard-option active-link">complains Tracker</li></a>
+                <a href="/invitation"><li class="dashboard-option">Build Community</li></a>
+                <a href="/tutorial"><li class="dashboard-option">Get Tour</li></a>
+                <a href="/change-password"><li class="dashboard-option">Change Password</li></a>
+            </ul>
+            <div class="log-out-container">
+                <div class="log-out-indicator"></div>
+                <div class="logout-link"><a href="/logout">Log Out</a></div>
+            </div>
+        </div>
+        <div class="Complains-tracker">
+            <h1>Complains Tracker</h1>
+            <div class="table-container">
+                <table>
+                    <th>Complain Link</th>
+                    <th>Complain Type</th>
+                    <th>Posting Date</th>
+                    <th>Status</th>
+                    <% for(i = 0; i<userComplains.length; i++) { %>
+                        <tr>
+                            <td><a href=<%= userComplains[i].link %>> <%= userComplains[i].link %> </a></td>
+                            <td> <%= userComplains[i].violationType %> </td>
+                            <td> <%= userComplains[i].createdAt.toLocaleDateString() %> </td>
+                            <td> <%= userComplains[i].status %> </td>
+                                <% if (userComplains[i].status === 'pending') { %>
+                                    <td><i class="fa-solid fa-pen-to-square"></i></td>
+                                    <td><i class="fa-solid fa-trash-can"></i></td>
+                                <% } else if (userComplains[i].status === 'Completed') { %>
+                                    <td><i class="fa-solid fa-eye"></i></td>
+                                    <td><i class="fa-solid fa-rotate-right"></i></td>
+                                <% } %>
+                        </tr>
+                    <% } %>
+                </table>
+                <button type="button">Raise Complain</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

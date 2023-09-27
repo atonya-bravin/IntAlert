@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntAlert Dashboard</title>
+    <link rel="stylesheet" href="CSS/universal.css">
+    <link rel="stylesheet" href="CSS/dashboard-invitations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="options-container">
+            <div class="logo-container">
+                IntAlert
+            </div>
+            <span id="user-name">Bravin Atonya</span>
+            <br/>
+            <ul class="dashboard-options">
+                <a href="/complains-bay"><li class="dashboard-option">Raise Complain</li></a>
+                <a href="/complains-tracker"><li class="dashboard-option">complains Tracker</li></a>
+                <a href="/invitation"><li class="dashboard-option  active-link">Build Community</li></a>
+                <a href="/tutorial"><li class="dashboard-option">Get Tour</li></a>
+                <a href="/change-password"><li class="dashboard-option">Change Password</li></a>
+            </ul>
+            <div class="log-out-container">
+                <div class="log-out-indicator"></div>
+                <div class="logout-link"><a href="/logout">Log Out</a></div>
+            </div>
+        </div>
+        <div class="Complains-bay">
+            <h1>Send Invitation</h1>
+            <div class="input-container-holder">
+                <div class="input-container">
+                    <form action="/send-email" method="post">
+                        <label for="recipient_mail">Email</label>
+                        <br/>
+                        <input type="email" name="recipient_mail" id="recipient_mail" placeholder="JohnDoe@gmail.com">
+                        <label for="mail_body">Email Body</label>
+                        <br/>
+                        <textarea name="mail_body" id="mail_body"></textarea>
+                        <span id="copy_link">Copy Link &nbsp; <i class="fa-solid fa-copy"></i></span>
+                        <div class="confirm-button_container">
+                            <button type="submit" class="submit-button" id="send_invitation"><i class="fa-solid fa-paper-plane"></i> &nbsp;  Send Invitation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/copy_link.js"></script>
+</body>
+</html>
