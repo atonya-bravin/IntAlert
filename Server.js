@@ -234,7 +234,7 @@ app.get("/complains-tracker", (req, res) => {
         const session_user_id = req.session.user_id;
         complainsModel.find({user_id: session_user_id})
         .then((userComplains)=>{
-            res.render("dashboard-complains-tracker.ejs",{
+            res.render("dashboard-complains-tracker",{
                 userComplains: userComplains
             });
         });
@@ -243,7 +243,7 @@ app.get("/complains-tracker", (req, res) => {
 
 app.get("/complains-viewer", (req, res) => {
     complainsModel.find({'status': 'pending'}).then((complains)=>{
-        res.render("complains-viewer.ejs",{
+        res.render("complains-viewer",{
             complains: complains
         });
     });
