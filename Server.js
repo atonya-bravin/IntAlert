@@ -288,7 +288,7 @@ app.post("/send-email", (req, res)=>{
            
     const { recipient_mail, mail_body } = req.body;
 
-    const intAlert_link_message = '<br/><br><b>IntAlert Link<b/><br/><br/><a href="/">localhost:3000</a>';
+    const intAlert_link_message = '<br/><br><b>IntAlert Link<b/><br/><br/><a href="/">https://intalert-application.onrender.com</a>';
     const full_mail_body = mail_body + intAlert_link_message;
 
     // Email data

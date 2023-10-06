@@ -15,17 +15,46 @@ The following is a link to the sliders that provide insights to the aplication d
 
 ## Technologies Used
 - **MongoDB**: This is the  database management system that we use to hold our information. This is because it is a popular DBMS and has a wide community.
+  
 - **Node.js**: This is a javascript framework that we use to perform the backend functionalities. The reason for this framework is that it is simple to use and contains a large library that we can integrate into the application.
+  
 - **Express**: This is a web application framework that is available in npm and contains a wide library that we can use to integrate our front end and the backend together.
-- **Angular**: We will use angular as our front end framework.
+  
+- **HTML & CSS**:  For the front-end of IntAlert, we employed HTML and CSS to craft a user-friendly interface.
 
 ## Database Design
 This is a link that contains an image of our database design [Database](https://drive.google.com/file/d/1hYGBjemjRO702wySGdFp0vFcdtDDt_NP/view?usp=sharing)
+
+## Installation
+
+To set up and run IntAlert on your local machine, follow these steps:
+
+1. **Clone the Repository:**
+
+```
+git clone https://github.com/your-username/intalert.git
+cd intalert
+```
+
+2. **Install Dependencies:**
+```
+npm install
+
+```
+3. **Set Environment Variables:**
+Create a .env file in the root directory and configure any necessary environment variables. 
+
+4. Access the application by opening a web browser and navigating to 
+```
+http://localhost:3000
+ ```
+
 
 ## Project Plan
 This is a link to the trello board that contains the project plan [Trello](https://trello.com/b/bEMg1S6S/intalert)
 
 ## IntAlert Team
+Meet the dedicated team behind IntAlert:
 - **Bravin Atonya** : Project Manager | Backend Developer | UI/UX Designer
   
   [Github](https://github.com/atonya-bravin)    [LinkedIn](https://www.linkedin.com/in/bravin-atonya-71048425a/)    [Twitter](https://twitter.com/bravin_the_Geek)
